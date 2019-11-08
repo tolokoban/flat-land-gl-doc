@@ -2,4 +2,4 @@
 
 ## Tutorials
 
-* [Hello world!](man/clear.md)
+* [Hello world!](man/tuto/clear.md)
