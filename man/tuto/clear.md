@@ -132,3 +132,9 @@ Finally, let's edit `package.json` and add two new scripts:
 ```
 
 ## Day to day work
+
+* When you want to start your game locally: `npm start`.
+* When you want to share it on GitHub: `npm run deploy`.
+
+All your friends can now play your game on this URL:
+https://BestHackerEver.github.io/best-game-ever__

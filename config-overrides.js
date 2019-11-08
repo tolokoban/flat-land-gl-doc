@@ -17,6 +17,11 @@ const multipleEntry = MultipleEntry(
             entry: `src/page/tutorial/clear/index.tsx`,
             template: 'public/index.html',
             outPath: `tuto-clear.html`
+        },
+        {
+            entry: `src/page/tutorial/background/index.tsx`,
+            template: 'public/index.html',
+            outPath: `tuto-background.html`
         }
     ]
 )
