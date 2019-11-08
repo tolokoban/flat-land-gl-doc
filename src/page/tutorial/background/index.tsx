@@ -15,7 +15,7 @@ function init(canvas: HTMLCanvasElement) {
         image: background
     })
     new FlatLand.Painter.Background("background", scene, {
-        atlasName: "background"
+        atlasName: "background", align: "BR"
     })
     scene.start()
 }
