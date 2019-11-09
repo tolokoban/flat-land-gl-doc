@@ -1,0 +1,38 @@
+{
+  "files": {
+    "static/js/0.b1ddfca4.chunk.js": "./static/js/0.b1ddfca4.chunk.js",
+    "static/js/0.b1ddfca4.chunk.js.map": "./static/js/0.b1ddfca4.chunk.js.map",
+    "index.731f7d27.css": "./static/css/index.731f7d27.3acec90f.chunk.css",
+    "index.731f7d27.js": "./static/js/index.731f7d27.45d05f8f.chunk.js",
+    "index.731f7d27.js.map": "./static/js/index.731f7d27.45d05f8f.chunk.js.map",
+    "index.85478ee2.css": "./static/css/index.85478ee2.e496bab1.chunk.css",
+    "index.85478ee2.js": "./static/js/index.85478ee2.10c4a8a8.chunk.js",
+    "index.85478ee2.js.map": "./static/js/index.85478ee2.10c4a8a8.chunk.js.map",
+    "main.css": "./static/css/main.dfca195d.chunk.css",
+    "main.js": "./static/js/main.62eb6ed1.chunk.js",
+    "main.js.map": "./static/js/main.62eb6ed1.chunk.js.map",
+    "runtime-index.731f7d27.js": "./static/js/runtime-index.731f7d27.f7fcb397.js",
+    "runtime-index.731f7d27.js.map": "./static/js/runtime-index.731f7d27.f7fcb397.js.map",
+    "runtime-index.85478ee2.js": "./static/js/runtime-index.85478ee2.84bd7e6b.js",
+    "runtime-index.85478ee2.js.map": "./static/js/runtime-index.85478ee2.84bd7e6b.js.map",
+    "runtime-main.js": "./static/js/runtime-main.a73a0440.js",
+    "runtime-main.js.map": "./static/js/runtime-main.a73a0440.js.map",
+    "static/js/7.e5fefa8e.chunk.js": "./static/js/7.e5fefa8e.chunk.js",
+    "static/js/7.e5fefa8e.chunk.js.map": "./static/js/7.e5fefa8e.chunk.js.map",
+    "index.html": "./index.html",
+    "precache-manifest.268242c9552df38a23907866b0264b54.js": "./precache-manifest.268242c9552df38a23907866b0264b54.js",
+    "service-worker.js": "./service-worker.js",
+    "static/css/index.731f7d27.3acec90f.chunk.css.map": "./static/css/index.731f7d27.3acec90f.chunk.css.map",
+    "static/css/index.85478ee2.e496bab1.chunk.css.map": "./static/css/index.85478ee2.e496bab1.chunk.css.map",
+    "static/css/main.dfca195d.chunk.css.map": "./static/css/main.dfca195d.chunk.css.map",
+    "static/media/background.jpg": "./static/media/background.086dcaef.jpg",
+    "tuto-background.html": "./tuto-background.html",
+    "tuto-clear.html": "./tuto-clear.html"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a73a0440.js",
+    "static/js/0.b1ddfca4.chunk.js",
+    "static/css/main.dfca195d.chunk.css",
+    "static/js/main.62eb6ed1.chunk.js"
+  ]
+}
