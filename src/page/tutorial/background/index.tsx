@@ -3,9 +3,16 @@ import ReactDOM from 'react-dom'
 import FlatLand from 'flat-land-gl'
 
 import Canvas from '../../../canvas'
+import Description from '../../../view/description'
+import description from './background.md'
 import background from './background.jpg'
+import "./background.css"
 
-ReactDOM.render(<Canvas init={init}/>, document.getElementById('root'));
+
+ReactDOM.render(<div>
+    <Canvas init={init}/>
+    <Description content={description}/>
+</div>, document.getElementById('root'));
 
 
 function init(canvas: HTMLCanvasElement) {
