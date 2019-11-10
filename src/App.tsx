@@ -7,7 +7,7 @@ const App: React.FC = () => {
         <h1>Tutorials</h1>
         <ul>
             <li><a href="tuto-clear.html">Hello world!</a></li>
-            <li><a href="tuto-background.html">Salable background</a></li>
+            <li><a href="tuto-background.html">Scalable background</a></li>
         </ul>
     </div>
   );
