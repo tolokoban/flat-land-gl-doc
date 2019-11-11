@@ -23,6 +23,11 @@ const multipleEntry = MultipleEntry(
             entry: `src/page/tutorial/background/index.tsx`,
             template: 'public/index.html',
             outPath: `tuto-background.html`
+        },
+        {
+            entry: `src/page/tutorial/sprites-1/index.tsx`,
+            template: 'public/index.html',
+            outPath: `tuto-sprites-1.html`
         }
     ]
 )
@@ -35,7 +40,7 @@ module.exports = {
         const lastRule = config.module.rules.pop()
         lastRule.oneOf.unshift({
             //test: /\.(md|vert|frag)$/i,
-            test: /\.md$/i,
+            test: /\.(md|vert|frag)$/i,
             loader: require.resolve('raw-loader')
         })
         config.module.rules.push(lastRule)

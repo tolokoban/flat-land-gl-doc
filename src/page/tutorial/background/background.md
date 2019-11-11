@@ -7,11 +7,11 @@ import url from "./background.jpg"
 const scene = new FlatLand.Scene(canvas)
 scene.createAtlas({
     name: "background",
-    image: url
+    image: background
 })
-new FlatLand.Painter.Background("painter", scene, {
-    atlasName: "background",
-    // (B)ottom (R)ight corner will be always visible.
+new FlatLand.Painter.Background({
+    scene,
+    atlas: "background",
     align: "BR"
 })
 scene.start()
