@@ -56,14 +56,14 @@ async function init(canvas: HTMLCanvasElement) {
         name: "background",
         image: backgroundAtlas
     })
+    const sprites = new FlatLand.Painter.Sprites({
+        scene,
+        atlas: "atlas"
+    })
     new FlatLand.Painter.Background({
         scene,
         atlas: "background",
         align: "B"
-    })
-    const sprites = new FlatLand.Painter.Sprites({
-        scene,
-        atlas: "atlas"
     })
 
     const items: any[] = []
