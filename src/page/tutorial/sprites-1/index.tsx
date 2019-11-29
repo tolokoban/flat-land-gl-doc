@@ -5,8 +5,8 @@ import FlatLand from 'flat-land-gl'
 import Canvas from '../../../canvas'
 //import Description from '../../../view/description'
 //import description from './sprites-1.md'
-import atlasAtlas from './atlas.png'
-import backgroundAtlas from './background.png'
+import AtlasAtlas from './atlas.png'
+import BackgroundAtlas from './background.png'
 
 
 ReactDOM.render(<div>
@@ -48,21 +48,17 @@ async function init(canvas: HTMLCanvasElement) {
     }
 
     const scene = new FlatLand.Scene(canvas)
-    scene.createAtlas({
-        name: "atlas",
-        image: atlasAtlas
+    const spritesAtlas = scene.createAtlas({
+        image: AtlasAtlas
     })
-    scene.createAtlas({
-        name: "background",
-        image: backgroundAtlas
+    const backgroundAtlas = scene.createAtlas({
+        image: BackgroundAtlas
     })
     const sprites = new FlatLand.Painter.Sprites({
-        scene,
-        atlas: "atlas"
+        atlas: spritesAtlas
     })
     new FlatLand.Painter.Background({
-        scene,
-        atlas: "background",
+        atlas: backgroundAtlas,
         align: "B"
     })
 

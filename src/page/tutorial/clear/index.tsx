@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import FlatLand from 'flat-land-gl'
+import FlatLandGL from 'flat-land-gl'
 import Description from '../../../view/description'
 import description from './clear.md'
 
@@ -13,9 +13,10 @@ ReactDOM.render(<div>
 
 
 function init(canvas: HTMLCanvasElement) {
-    const scene = new FlatLand.Scene(canvas)
-    new FlatLand.Painter.Clear({
-        scene, color: "#d72"
-    })
+    //console.info("window.FlatLand=", window.FlatLand);
+    console.info("FlatLandGL=", FlatLandGL);
+    console.info("FlatLandGL.Scene=", FlatLandGL.Scene);
+    const scene = new FlatLandGL.Scene(canvas)
+    new FlatLandGL.Painter.Clear({ color: "#d72" })
     scene.start()
 }

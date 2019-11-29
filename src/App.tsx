@@ -10,6 +10,8 @@ const App: React.FC = () => {
             <li><a href="tuto-background.html">Scalable background</a></li>
             <li><a href="tuto-sprites-1.html">Sprites (1)</a></li>
         </ul>
+        <h1>Vanilla Javascipt examples</h1>
+        <a href="examples/index.html">Look at this page</a>.
     </div>
   );
 }
