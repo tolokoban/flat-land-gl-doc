@@ -1,15 +1,11 @@
 div.view-Description {
-    position: absolute;
-    left: 1rem;
-    top: 1rem;
-    padding: .5rem 1rem;
-    background: #0008;
-    color: #fff;
-    font-size: 12px;
+  margin: 0;
+  padding: .5rem 1rem;
+  background: #fff8;
+  color: #000;
+  font-size: 11px;
 }
 
 div.view-Description pre {
-    margin-left: 4px;
-    padding: .5rem;    
-    box-shadow: -4px 0 2px -2px #49f;
+  padding: .5rem;
 }

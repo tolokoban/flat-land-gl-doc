@@ -1,7 +1,5 @@
 import React from "react"
 
-import "./canvas.css"
-
 interface ICanvasProps {
     init: (canvas: HTMLCanvasElement) => void
 }

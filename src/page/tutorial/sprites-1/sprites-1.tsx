@@ -1,19 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import FlatLand from 'flat-land-gl'
-
-import Canvas from '../../../canvas'
-//import Description from '../../../view/description'
-//import description from './sprites-1.md'
+import codeContent from './sprites-1-code.md'
 import AtlasAtlas from './atlas.png'
 import BackgroundAtlas from './background.png'
+import Page from '../../../view/page'
 
-
-ReactDOM.render(<div>
-    <Canvas init={init}/>
-    {/*<Description content={description}/>*/}
-</div>, document.getElementById('root'));
-
+ReactDOM.render(
+  <Page
+    title="Sprites in motion"
+    codeContent={codeContent}
+    onLoad={init}/>,
+  document.getElementById('root')
+)
 
 async function init(canvas: HTMLCanvasElement) {
     function newType(x: number, y: number, w: number, h: number) {
@@ -55,7 +54,8 @@ async function init(canvas: HTMLCanvasElement) {
         image: BackgroundAtlas
     })
     const sprites = new FlatLand.Painter.Sprites({
-        atlas: spritesAtlas
+        atlas: spritesAtlas,
+        scene
     })
     new FlatLand.Painter.Background({
         atlas: backgroundAtlas,

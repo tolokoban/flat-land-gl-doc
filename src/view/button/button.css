@@ -1,0 +1,14 @@
+button.Button {
+  border: none;
+  margin: 2px 1rem;
+  border-radius: 2px;
+  font-size: 90%;
+  font-weight: bold;
+  height: 1.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 4rem;
+  text-transform: uppercase;
+  cursor: pointer;
+}

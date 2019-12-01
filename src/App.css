@@ -1,3 +1,35 @@
+html, body {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.thm-ele-button {
+  box-shadow: 0 2px 4px rgba(0,0,0,.5);
+}
+
+.thm-ele-nav {
+  box-shadow: 0 4px 8px rgba(0,0,0,.5);
+  z-index: 9;
+}
+
+.thm-bgP {
+  background: #28d;
+  color: #def;
+}
+
+.thm-bgS {
+  background: #d72;
+  color: #fed;
+}
+
 .App {
   text-align: center;
 }
