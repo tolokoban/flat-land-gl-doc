@@ -14,51 +14,40 @@ const MultipleEntry = require('react-app-rewire-multiple-entry')
 
 
 const multipleEntry = MultipleEntry(
-    [{
-            entry: `src/page/tutorial/clear/index.tsx`,
-            template: 'public/index.html',
-            outPath: `tuto-clear.html`
-        },
-        {
-            entry: `src/page/tutorial/background/index.tsx`,
-            template: 'public/index.html',
-            outPath: `tuto-background.html`
-        },
-        {
-            entry: `src/page/tutorial/sprites-1/index.tsx`,
-            template: 'public/index.html',
-            outPath: `tuto-sprites-1.html`
-        }
-    ]
+  ['clear', 'background', 'sprites-1'].map(name => ({
+    entry: `src/page/tutorial/${name}/${name}.tsx`,
+    template: 'public/index.html',
+    outPath: `tuto-${name}.html`
+  }))
 )
 
 module.exports = {
-    webpack: function(config, env) {
-        multipleEntry.addMultiEntry(config);
-        config = rewireYAML(config, env)
+  webpack: function(config, env) {
+    multipleEntry.addMultiEntry(config);
+    config = rewireYAML(config, env)
 
-        const lastRule = config.module.rules.pop()
-        lastRule.oneOf.unshift({
-            //test: /\.(md|vert|frag)$/i,
-            test: /\.(md|vert|frag)$/i,
-            loader: require.resolve('raw-loader')
-        })
-        config.module.rules.push(lastRule)
+    const lastRule = config.module.rules.pop()
+    lastRule.oneOf.unshift({
+      //test: /\.(md|vert|frag)$/i,
+      test: /\.(md|vert|frag)$/i,
+      loader: require.resolve('raw-loader')
+    })
+    config.module.rules.push(lastRule)
 
-        return config;
-    }
+    return config;
+  }
 }
 
 
 
 function flush(obj, name) {
-    FS.writeFileSync(`${name}.json`, JSON.stringify(obj, replacer, '    '))
+  FS.writeFileSync(`${name}.json`, JSON.stringify(obj, replacer, '    '))
 }
 
 
 function replacer(k, v) {
-    if (v instanceof RegExp) {
-        return v.source
-    }
-    return v
+  if (v instanceof RegExp) {
+    return v.source
+  }
+  return v
 }

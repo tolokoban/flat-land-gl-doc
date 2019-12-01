@@ -17,6 +17,7 @@ function init(canvas: HTMLCanvasElement) {
     console.info("FlatLandGL=", FlatLandGL);
     console.info("FlatLandGL.Scene=", FlatLandGL.Scene);
     const scene = new FlatLandGL.Scene(canvas)
-    new FlatLandGL.Painter.Clear({ color: "#d72" })
+    const clearPainter = new FlatLandGL.Painter.Clear({ color: "#d72" })
+    scene.use([clearPainter])
     scene.start()
 }
