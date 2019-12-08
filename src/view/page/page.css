@@ -53,11 +53,28 @@ div.view-Page>div.desc-hide {
   transition: transform .2s;
   margin: 0;
   padding: .5rem 1rem;
-  background: #fff8;
+  background: #fffd;
   color: #000;
   font-size: 11px;
 }
 
 div.view-Page>div.desc-hide {
   transform: translateY(-110%);
+}
+
+div.view-Page>div.desc-show span.hljs-keyword {
+  color: #d0b;
+}
+
+div.view-Page>div.desc-show span.hljs-attr {
+  color: #048;
+}
+
+div.view-Page>div.desc-show span.hljs-string {
+  color: #0a0;
+}
+
+div.view-Page>div.desc-show span.hljs-number {
+  font-weight: bold;
+  color: #a70;
 }
