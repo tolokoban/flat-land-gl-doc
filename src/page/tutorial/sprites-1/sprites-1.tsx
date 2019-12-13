@@ -39,7 +39,7 @@ async function init(canvas: HTMLCanvasElement) {
     function add(items: any[], name: string, count: number = 1) {
         for (let k=0 ; k<count ; k++) {
             const type = TYPES[name]
-            const item = sprites.createSprite(type)
+            const item = spritesPainter.createSprite(type)
             item.extra.speed1 = (1 + Math.random()) * 0.001
             item.extra.speed2 = (1 + Math.random()) * 0.001
             items.push(item)
@@ -53,11 +53,10 @@ async function init(canvas: HTMLCanvasElement) {
     const backgroundAtlas = scene.createAtlas({
         image: BackgroundAtlas
     })
-    const sprites = new FlatLand.Painter.Sprites({
+    const spritesPainter = new FlatLand.Painter.Sprites({
         atlas: spritesAtlas,
-        scene
     })
-    new FlatLand.Painter.Background({
+    const backgroundPainter = new FlatLand.Painter.Background({
         atlas: backgroundAtlas,
         align: "B"
     })
@@ -86,5 +85,6 @@ async function init(canvas: HTMLCanvasElement) {
             item.update({ x, y, z, scale: (radius + 250) / 1000 })
         }
     }
+    scene.use([ spritesPainter, backgroundPainter ])
     scene.start()
 }
