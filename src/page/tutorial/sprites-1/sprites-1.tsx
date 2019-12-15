@@ -39,7 +39,7 @@ async function init(canvas: HTMLCanvasElement) {
     function add(items: any[], name: string, count: number = 1) {
         for (let k=0 ; k<count ; k++) {
             const type = TYPES[name]
-            const item = spritesPainter.create(type)
+            const item = spritesPainter.createSprite(type)
             item.extra.speed1 = (1 + Math.random()) * 0.001
             item.extra.speed2 = (1 + Math.random()) * 0.001
             items.push(item)
