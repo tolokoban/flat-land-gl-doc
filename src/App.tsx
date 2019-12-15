@@ -8,7 +8,9 @@ const App: React.FC = () => {
         <ul>
             <li><a href="tuto-clear.html">Hello world!</a></li>
             <li><a href="tuto-background.html">Scalable background</a></li>
-            <li><a href="tuto-sprites-1.html">Sprites (1)</a></li>
+            <li><a href="tuto-sprites-1.html">Sprites</a></li>
+            <li><a href="tuto-sprites-2.html">Quads</a></li>
+            <li><a href="tuto-voronoi.html">Voronoi</a></li>
         </ul>
         <h1>Vanilla Javascipt examples</h1>
         <a href="examples/index.html">Look at this page</a>.

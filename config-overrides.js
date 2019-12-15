@@ -6,7 +6,7 @@ const FS = require("fs")
  * For any page called `foobar`, you must provide this file: `src/app/foobar/index.tsx`
  * and the build process will generate `public/foobar.html`
  */
-const PAGES = ['tutorial/clear']
+const PAGES = ['clear', 'background', 'sprites-1', 'sprites-2', 'voronoi']
 
 
 const rewireYAML = require('react-app-rewire-yaml')
@@ -14,7 +14,7 @@ const MultipleEntry = require('react-app-rewire-multiple-entry')
 
 
 const multipleEntry = MultipleEntry(
-  ['clear', 'background', 'sprites-1'].map(name => ({
+  PAGES.map(name => ({
     entry: `src/page/tutorial/${name}/${name}.tsx`,
     template: 'public/index.html',
     outPath: `tuto-${name}.html`

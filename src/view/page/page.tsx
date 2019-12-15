@@ -20,7 +20,7 @@ interface TPageState {
 export default class Page extends React.Component<TPageProps, TPageState> {
   constructor( props: TPageProps ) {
       super(props)
-      this.state = { visible: true }
+      this.state = { visible: false }
   }
 
   private handleToggle = () => {
