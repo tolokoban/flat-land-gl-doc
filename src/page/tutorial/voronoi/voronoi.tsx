@@ -15,7 +15,21 @@ ReactDOM.render(
 
 function init(canvas: HTMLCanvasElement) {
     const scene = new FlatLandGL.Scene(canvas)
-    const voronoiPainter = new FlatLandGL.Painter.Voronoi()
+    const seeds: number[] = []
+    const colors: number[] = []
+
+    for (let count = 0; count < 10; count++) {
+        seeds.push(rnd(), rnd(), rnd())
+        colors.push(rnd(), rnd(), rnd())
+    }
+    const voronoiPainter = new FlatLandGL.Painter.Voronoi({
+        seeds, colors, border: 0.05, light: 1
+    })
     scene.use([voronoiPainter])
     scene.start()
+}
+
+
+function rnd() {
+    return Math.random()
 }

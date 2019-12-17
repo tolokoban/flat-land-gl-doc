@@ -1,0 +1,38 @@
+div.view-Template>div {
+    position: fixed;
+    top: 3rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3rem;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    text-align: center;
+}
+
+div.view-Template>header {
+    top: 0;
+    bottom: auto;
+    height: 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+div.view-Template>header>* {
+    flex: 0 0 auto;
+}
+
+div.view-Template>header>div {
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+div.view-Template>div>article {
+    text-align: left;
+    max-width: 800px;
+    margin: .5rem;
+    padding: .5rem;
+}
