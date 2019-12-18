@@ -1,0 +1,123 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
+import MD from '../../../view/md'
+import View from './view'
+import Code from '../../../view/code'
+import distSquaredFrag from './code/distSquared.frag'
+import lightFrag from './code/light.frag'
+import borderFrag from './code/border.frag'
+
+import Article from '../../../view/article'
+
+const seeds4 = [
+    rnd(.1, .4), rnd(.1, .4), 1,
+    rnd(.1, .4), rnd(.6, .9), 1,
+    rnd(.6, .9), rnd(.1, .4), 1,
+    rnd(.6, .9), rnd(.6, .9), 1
+]
+
+const colors4 = [
+    1, .5, 0,
+    0, .5, 1,
+    .5, .25, 0,
+    0, .25, .5
+]
+
+ReactDOM.render(
+    <Article title="Voronoi variations">
+        <section>
+            <View className="float-right"
+                width="250"
+                height="250"
+                seeds={seeds4}
+                colors={colors4}
+                border={0}
+                light={0} />
+            <MD>Voronoi is a technique that splits a surface in sub-regions according
+    to a set of control points.</MD>
+            <MD>In this example,
+    we use 4 control points each one in a quarter of the screen.</MD>
+            <MD>The algorithm is quite simple: for each point in the screen,
+    find the nearest control point and paint the pixel with its color.</MD>
+        </section>
+
+        <section>
+            <View className="float-left"
+                width="250"
+                height="250"
+                scaleX={3}
+                scaleY={3}
+                seeds={seeds4}
+                colors={colors4}
+                border={0}
+                light={0} />
+            <MD>The space coordinates are between 0 and 1.
+            We use the following squared distance in order to make the Voronoi result tilable.</MD>
+            <Code lang="glsl" src={distSquaredFrag} />
+        </section>
+
+        <section>
+            <View className="float-right"
+                width="250"
+                height="250"
+                scaleX={2}
+                scaleY={2}
+                seeds={seeds4}
+                colors={colors4}
+                border={0}
+                light={1} />
+            <MD>Since we know the distance of a pixel to the closest control point,
+                                    we can add some lightening.</MD>
+            <Code lang="glsl" src={lightFrag} />
+        </section>
+
+        <section>
+            <View className="float-left"
+                scaleX={2}
+                scaleY={2}
+                width="150"
+                height="150"
+                seeds={seeds4}
+                colors={colors4}
+                border={0.02}
+                light={0} />
+            <View className="float-right"
+                scaleX={2}
+                scaleY={2}
+                width="150"
+                height="150"
+                seeds={seeds4}
+                colors={colors4}
+                border={.1}
+                light={0} />
+            <View className="float-left"
+                scaleX={2}
+                scaleY={2}
+                width="150"
+                height="150"
+                seeds={seeds4}
+                colors={colors4}
+                border={0.02}
+                light={1} />
+            <View className="float-right"
+                scaleX={2}
+                scaleY={2}
+                width="150"
+                height="150"
+                seeds={seeds4}
+                colors={colors4}
+                border={0.1}
+                light={1} />
+            <MD>And some border around the **cells**.
+            We call _cell_ a region belonging to an unique control point.</MD>
+            <Code lang="glsl" src={borderFrag} />
+            <MD>Obviously, you can combine ligth and border.
+            </MD>
+        </section>
+    </Article>,
+    document.getElementById('root'))
+
+
+function rnd(min: number = 0, max: number = 1): number {
+    return min + Math.random() * (max - min)
+}

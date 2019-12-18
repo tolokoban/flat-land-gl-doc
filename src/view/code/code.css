@@ -1,0 +1,36 @@
+div.view-Code {
+    margin: .5rem;
+    padding: .5rem;
+    font-size: 80%;
+    background: linear-gradient(to right,#fff,transparent);
+}
+
+div.view-Code span.hljs-type {
+    color: #080;
+}
+
+div.view-Code span.hljs-keyword {
+    color: #d0b;
+}
+
+div.view-Code span.hljs-built_in {
+    font-weight: bold;
+    color: #d0b;
+}
+
+div.view-Code span.hljs-attr {
+    color: #048;
+}
+
+div.view-Code span.hljs-string {
+    color: #0a0;
+}
+
+div.view-Code span.hljs-comment {
+    color: #0007;
+}
+
+div.view-Code span.hljs-number {
+    font-weight: bold;
+    color: #a70;
+}

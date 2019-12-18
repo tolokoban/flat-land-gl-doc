@@ -19,7 +19,7 @@ function init(canvas: HTMLCanvasElement) {
     const colors: number[] = []
 
     for (let count = 0; count < 10; count++) {
-        seeds.push(rnd(), rnd(), rnd())
+        seeds.push(rnd(), rnd(), 1)
         colors.push(rnd(), rnd(), rnd())
     }
     const voronoiPainter = new FlatLandGL.Painter.Voronoi({
