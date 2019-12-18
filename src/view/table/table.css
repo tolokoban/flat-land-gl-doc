@@ -1,0 +1,17 @@
+div.view-Table {
+  display: table;
+  border-collapse: collapse;
+  box-shadow: 0 1px 2px rgba(0,0,0,.5);
+}
+
+div.view-Table > div {
+  display: table-row;
+}
+
+div.view-Table > div > div {
+  display: table-cell;
+  border: 1px solid rgba(0,0,0,.25);
+  background: #fff;
+  vertical-align: middle;
+  padding: 0.25rem 0.5rem;
+}

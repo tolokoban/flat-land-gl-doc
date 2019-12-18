@@ -61,3 +61,8 @@ div.view-Template>div>article {
 div.view-Template>div>article>section {
     clear: both;
 }
+
+
+div.view-Template pre {
+  white-space: pre;
+}
