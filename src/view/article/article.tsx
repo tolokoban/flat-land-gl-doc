@@ -1,7 +1,16 @@
 import React from "react"
 import Button from '../button'
+import Tfw from "tfw"
 
 import "./article.css"
+
+Tfw.Theme.register("article", {
+    bgP: "#28d",
+    bgS: "#af4",  // #fa4
+    bg0: "#aaa",
+    bg3: "#fff"
+})
+Tfw.Theme.apply("article")
 
 interface TTemplateProps {
     title: string

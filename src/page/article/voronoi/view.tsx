@@ -19,7 +19,16 @@ interface IVoronoiProps {
 }
 
 export default class Voronoi extends React.Component<IVoronoiProps, {}> {
+    private scene: IScene | null = null
+
     handleInit = (scene: IScene) => {
+        this.scene = scene
+        this.refresh()
+    }
+
+    private refresh = () => {
+        const { scene } = this
+        if (!scene) return
         const { seeds, colors, border, light, scaleX, scaleY } = this.props
         const voronoiPainter = new FlatLandGL.Painter.Voronoi({
             seeds, colors, border, light,
@@ -27,6 +36,11 @@ export default class Voronoi extends React.Component<IVoronoiProps, {}> {
             scaleY: castInteger(scaleY, 1)
         })
         scene.use([ voronoiPainter ])
+        scene.start()
+    }
+
+    componentDidUpdate() {
+        this.refresh()
     }
 
     render() {

@@ -11,13 +11,11 @@ import borderFrag from './code/border.frag'
 import Tfw from "tfw"
 import Article from '../../../view/article'
 
-Tfw.Theme.apply("default")
-
 const seeds4 = [
-  rnd(.1, .4), rnd(.1, .4), 1,
-  rnd(.1, .4), rnd(.6, .9), 1,
-  rnd(.6, .9), rnd(.1, .4), 1,
-  rnd(.6, .9), rnd(.6, .9), 1
+  0, 0, 1,
+  .5, .1, 1,
+  .2, .8, 1,
+  .5, .5, 1
 ]
 
 const colors4 = [
@@ -167,10 +165,11 @@ ReactDOM.render(
         ]
       }</Table>
       <MD>
-        In this table, you can see the parameters applied to the 6 examples.
-        * **B**: Border
-        * **L**: Light
-            </MD>
+In this table, you can see the parameters applied to the 6 examples.
+
+  * __B__: Border
+  * __L__: Light
+    </MD>
     </section>
 
     <section>

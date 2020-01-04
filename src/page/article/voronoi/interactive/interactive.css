@@ -1,1 +1,8 @@
 div.page-article-voronoi-Interactive {}
+
+div.page-article-voronoi-Interactive div.seeds > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:     
+}
