@@ -22,8 +22,10 @@ async function init(canvas: HTMLCanvasElement) {
     const backgroundAtlas = scene.createAtlas({
         image: BackgroundAtlas
     })
+    const camera = new FlatLand.Camera.Silly()
     const spritesPainter = new FlatLand.Painter.Sprites({
-        atlas: spritesAtlas,
+        camera,
+        atlas: spritesAtlas
     })
     const backgroundPainter = new FlatLand.Painter.Background({
         atlas: backgroundAtlas,
