@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import FlatLand from 'flat-land-gl'
 import codeContent from './sprites-1-code.md'
-import AtlasAtlas from './atlas.png'
+import SpritesAtlas from './atlas.png'
 import BackgroundAtlas from './background.png'
 import Page from '../../../view/page'
 
@@ -17,12 +17,19 @@ ReactDOM.render(
 async function init(canvas: HTMLCanvasElement) {
     function newType(x: number, y: number, w: number, h: number) {
         return {
+            x: 0,
+            y: 0,
+            z: 0,
             width: w,
             height: h,
-            u0: x / 524,
-            v0: y / 856,
-            u1: (x + w) / 524,
-            v1: (y + h) / 856
+            u0: x / 1024,
+            v0: y / 1024,
+            u1: (x + w) / 1024,
+            v1: (y + h) / 1024,
+            originX: w / 2,
+            originY: h / 2,
+            scale: 1,
+            angle: 0
         }
     }
     const TYPES: {[key: string]: any} = {
@@ -48,7 +55,7 @@ async function init(canvas: HTMLCanvasElement) {
 
     const scene = new FlatLand.Scene(canvas)
     const spritesAtlas = scene.createAtlas({
-        image: AtlasAtlas
+        image: SpritesAtlas
     })
     const backgroundAtlas = scene.createAtlas({
         image: BackgroundAtlas
@@ -65,6 +72,11 @@ async function init(canvas: HTMLCanvasElement) {
 
     const items: any[] = []
     add(items, "bol")
+    items[0].update({
+        x: 0, y: 0, z: 0,
+        width: 200, height: 200
+    })
+
     add(items, "corbeille")
     add(items, "tasse", 12)
     add(items, "citron", 17)
@@ -80,11 +92,11 @@ async function init(canvas: HTMLCanvasElement) {
             const speed2 = item.extra.speed2
             const radius = (1 + Math.cos(time * speed1)) * 120 + 10
             const angle = time * speed2
-            const x = 500 + radius * Math.cos(angle)
-            const y = 500 + radius * Math.sin(angle)
+            const x = radius * Math.cos(angle)
+            const y = radius * Math.sin(angle)
             const z = radius / 500
 
-            item.update({ x, y, z, scale: (radius + 250) / 1000 })
+            item.update({ x, y, z, scale: (radius + 250) / 1024 })
         }
     }
     scene.use([ spritesPainter, backgroundPainter ])
