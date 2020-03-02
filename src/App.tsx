@@ -16,8 +16,6 @@ const App: React.FC = () => {
             <ul>
                 <li><a href="article/voronoi.html">Voronoi</a></li>
             </ul>
-            <h1>Vanilla Javascipt examples</h1>
-            <a href="examples/index.html">Look at this page</a>.
     </div>
     );
 }

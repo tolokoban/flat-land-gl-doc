@@ -15,17 +15,33 @@ ReactDOM.render(
 )
 
 async function init(canvas: HTMLCanvasElement) {
+    const scene = new FlatLand.Scene(canvas)
+    const atlases = await scene.createAtlasesAsync({
+        background: { image: BackgroundAtlas },
+        sprites: { image: SpritesAtlas },
+    })
+    const camera = new FlatLand.Camera.Cover2D({ size: 1024 })
+    const spritesPainter = new FlatLand.Painter.Sprites({
+        camera,
+        atlas: atlases.sprites
+    })
+    const backgroundPainter = new FlatLand.Painter.Background({
+        atlas: atlases.background,
+        align: "B"
+    })
+
     function newType(x: number, y: number, w: number, h: number) {
+        const atlas = atlases.sprites
         return {
             x: 0,
             y: 0,
-            z: 0,
+            z: Math.random(),
             width: w,
             height: h,
-            u0: x / 1024,
-            v0: y / 1024,
-            u1: (x + w) / 1024,
-            v1: (y + h) / 1024,
+            u0: x / atlas.width,
+            v0: y / atlas.height,
+            u1: (x + w) / atlas.width,
+            v1: (y + h) / atlas.height,
             originX: w / 2,
             originY: h / 2,
             scale: 1,
@@ -53,23 +69,6 @@ async function init(canvas: HTMLCanvasElement) {
         }
     }
 
-    const scene = new FlatLand.Scene(canvas)
-    const spritesAtlas = scene.createAtlas({
-        image: SpritesAtlas
-    })
-    const backgroundAtlas = scene.createAtlas({
-        image: BackgroundAtlas
-    })
-    const camera = new FlatLand.Camera.Silly()
-    const spritesPainter = new FlatLand.Painter.Sprites({
-        camera,
-        atlas: spritesAtlas
-    })
-    const backgroundPainter = new FlatLand.Painter.Background({
-        atlas: backgroundAtlas,
-        align: "B"
-    })
-
     const items: any[] = []
     add(items, "bol")
     items[0].update({
@@ -90,13 +89,12 @@ async function init(canvas: HTMLCanvasElement) {
             const item = items[k]
             const speed1 = item.extra.speed1
             const speed2 = item.extra.speed2
-            const radius = (1 + Math.cos(time * speed1)) * 120 + 10
-            const angle = time * speed2
+            const radius = 250 + Math.cos(time * speed1) * 50
+            const angle = (time + 54321) * speed2
             const x = radius * Math.cos(angle)
             const y = radius * Math.sin(angle)
-            const z = radius / 500
 
-            item.update({ x, y, z, scale: (radius + 250) / 1024 })
+            item.update({ x, y, scale: .75 + 0.25 * Math.sin(time * speed2) })
         }
     }
     scene.use([ spritesPainter, backgroundPainter ])

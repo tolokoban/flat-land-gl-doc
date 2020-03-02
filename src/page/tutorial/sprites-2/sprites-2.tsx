@@ -16,29 +16,27 @@ ReactDOM.render(
 
 async function init(canvas: HTMLCanvasElement) {
     const scene = new FlatLand.Scene(canvas)
-    const spritesAtlas = scene.createAtlas({
-        image: SpriteAtlas
+    const atlases = await scene.createAtlasesAsync({
+        background: { image: BackgroundAtlas },
+        sprites: { image: SpriteAtlas },
     })
-    const backgroundAtlas = scene.createAtlas({
-        image: BackgroundAtlas
-    })
-    const camera = new FlatLand.Camera.Silly()
+    const camera = new FlatLand.Camera.Cover2D({ size: 1024 })
     const spritesPainter = new FlatLand.Painter.Sprites({
         camera,
-        atlas: spritesAtlas
+        atlas: atlases.sprites
     })
     const backgroundPainter = new FlatLand.Painter.Background({
-        atlas: backgroundAtlas,
+        atlas: atlases.background,
         align: "B"
     })
 
     const quad = spritesPainter.createQuad({})
 
     scene.onAnimation = (time: number) => {
-      const [xTL, yTL] = rotate(256, 256, 256, time, 0.001234)
-      const [xTR, yTR] = rotate(768, 256, 256, time + 10, 0.002034)
-      const [xBR, yBR] = rotate(768, 768, 256, time - 7, 0.001034)
-      const [xBL, yBL] = rotate(256, 768, 256, time + 3, 0.001724)
+      const [xTL, yTL] = rotate(-256, 256, 256, time, 0.001234)
+      const [xTR, yTR] = rotate(256, 256, 256, time + 10, 0.002034)
+      const [xBR, yBR] = rotate(256, -256, 256, time - 7, 0.001034)
+      const [xBL, yBL] = rotate(-256, -256, 256, time + 3, 0.001724)
       quad.update({
         xTL, yTL, xTR, yTR, xBR, yBR, xBL, yBL
       })
