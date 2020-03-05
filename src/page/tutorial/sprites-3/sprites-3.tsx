@@ -57,13 +57,13 @@ async function init(canvas: HTMLCanvasElement) {
     }
 
     function add(items: any[], name: string, count: number = 1) {
-        for (let k=0 ; k<count ; k++) {
+        for (let k = 0; k < count; k++) {
             const type = TYPES[name]
             const item = spritesPainter.createSprite({
                 ...type,
                 x: rnd(-300, +300),
                 y: rnd(-300, +300),
-                z: rnd(-100, +100)
+                z: rnd(-17, +17)
             })
             items.push(item)
         }
@@ -71,24 +71,39 @@ async function init(canvas: HTMLCanvasElement) {
 
     const items: any[] = []
     add(items, "bol")
-    items[0].update({ x: 0, y: 0, z: 100 })
+    items[0].update({ x: 0, y: 0, z: 200 })
     add(items, "corbeille")
     items[1].update({ x: 0, y: 0, z: 0 })
     add(items, "tasse", 1)
-    items[2].update({ x: 0, y: 0, z: -100 })
+    items[2].update({ x: 0, y: 0, z: -200 })
+    add(items, "croissant", 17)
     /*
     add(items, "citron", 7)
-    add(items, "croissant", 3)
     add(items, "framboise", 7)
     add(items, "noisette", 2)
     add(items, "the", 1)
     */
+
+    const croissants = items.slice(3)
+    const nbCroissants = croissants.length
+
     scene.onAnimation = (time: number) => {
-        const lat = 0 // Math.sin(time * 0.00053) * 1
-        const lng = time * 0.0001 // Math.PI * (scene.pointer.x - scene.width / 2) / scene.width
+        const lat = 1 * scene.pointer.y / scene.height
+        const lng = time * 0.00023
         camera.orbit(0, 0, 0, 1024, lat, lng)
+
+        for (let i = 0 ; i < nbCroissants ; i++) {
+            const croissant = croissants[i]
+            const angle = 2 * Math.PI * i / nbCroissants
+            const radius = 250 + Math.abs(150 * Math.sin(time * 0.003))
+            croissant.update({
+                angle: (i & 1 ? 1 : -1) * time * (2 + 3 * (i / nbCroissants)),
+                x: radius * Math.cos(angle),
+                y: radius * Math.sin(angle)
+            })
+        }
     }
-    scene.use([spritesPainter/*, backgroundPainter*/])
+    scene.use([spritesPainter, backgroundPainter])
     scene.start()
 }
 
