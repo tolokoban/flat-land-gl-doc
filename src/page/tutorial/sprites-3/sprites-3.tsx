@@ -22,7 +22,7 @@ async function init(canvas: HTMLCanvasElement) {
         background: { image: BackgroundAtlas },
         sprites: { image: SpritesAtlas },
     })
-    const camera = new FlatLand.Camera.Perspective({ size: 1024 })
+    const camera = new FlatLand.Camera.Perspective()
     const spritesPainter = new FlatLand.Painter.Sprites({
         camera,
         atlas: atlases.sprites
@@ -35,14 +35,14 @@ async function init(canvas: HTMLCanvasElement) {
     function newType(x: number, y: number, w: number, h: number) {
         const atlas = atlases.sprites
         return {
-            uTL: (x) / atlas.width,
-            vTL: (y) / atlas.height,
-            uTR: (x + w) / atlas.width,
-            vTR: (y) / atlas.height,
-            uBL: (x) / atlas.width,
-            vBL: (y + h) / atlas.height,
-            uBR: (x + w) / atlas.width,
-            vBR: (y + h) / atlas.height
+            u0: (x) / atlas.width,
+            v0: (y) / atlas.height,
+            u1: (x + w) / atlas.width,
+            v1: (y + h) / atlas.height,
+            width: w,
+            height: h,
+            originX: w / 2,
+            originY: h / 2
         }
     }
     const TYPES: { [key: string]: any } = {
@@ -56,47 +56,43 @@ async function init(canvas: HTMLCanvasElement) {
         the: newType(402, 316, 124, 149)
     }
 
-    function add(name: string, x: number, y: number, lat: number, lng: number) {
-        const type = TYPES[name]
-        const item = spritesPainter.createQuad({
-
-        })
-        item.extra.speed1 = (1 + Math.random()) * 0.001
-        item.extra.speed2 = (1 + Math.random()) * 0.001
-        items.push(item)
+    function add(items: any[], name: string, count: number = 1) {
+        for (let k=0 ; k<count ; k++) {
+            const type = TYPES[name]
+            const item = spritesPainter.createSprite({
+                ...type,
+                x: rnd(-300, +300),
+                y: rnd(-300, +300),
+                z: rnd(-100, +100)
+            })
+            items.push(item)
+        }
     }
 
     const items: any[] = []
     add(items, "bol")
-    items[0].update({
-        x: 0, y: 0, z: 0,
-        width: 200, height: 200
-    })
-
+    items[0].update({ x: 0, y: 0, z: 100 })
     add(items, "corbeille")
-    add(items, "tasse", 12)
-    add(items, "citron", 17)
-    add(items, "croissant", 23)
-    add(items, "framboise", 47)
-    add(items, "noisette", 20)
-    add(items, "the", 10)
-
+    items[1].update({ x: 0, y: 0, z: 0 })
+    add(items, "tasse", 1)
+    items[2].update({ x: 0, y: 0, z: -100 })
+    /*
+    add(items, "citron", 7)
+    add(items, "croissant", 3)
+    add(items, "framboise", 7)
+    add(items, "noisette", 2)
+    add(items, "the", 1)
+    */
     scene.onAnimation = (time: number) => {
-        camera.orbit(0, 0, 0, 1024, time * 0.001, 0)
-
-        /*
-        for (let k=0 ; k<items.length ; k++) {
-            const item = items[k]
-            const speed1 = item.extra.speed1
-            const speed2 = item.extra.speed2
-            const radius = 250 + Math.cos(time * speed1) * 50
-            const angle = (time + 54321) * speed2
-            const x = radius * Math.cos(angle)
-            const y = radius * Math.sin(angle)
-
-            item.update({ x, y })
-        }*/
+        const lat = 0 // Math.sin(time * 0.00053) * 1
+        const lng = time * 0.0001 // Math.PI * (scene.pointer.x - scene.width / 2) / scene.width
+        camera.orbit(0, 0, 0, 1024, lat, lng)
     }
-    scene.use([spritesPainter, backgroundPainter])
+    scene.use([spritesPainter/*, backgroundPainter*/])
     scene.start()
+}
+
+
+function rnd(min: number, max: number) {
+    return min + Math.random() * (max - min)
 }
