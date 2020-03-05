@@ -11,6 +11,7 @@ const PAGES = [
     'tutorial/background',
     'tutorial/sprites-1',
     'tutorial/sprites-2',
+    'tutorial/sprites-3',
     'tutorial/voronoi',
 
     'article/voronoi',

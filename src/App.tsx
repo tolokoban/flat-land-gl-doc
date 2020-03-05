@@ -8,8 +8,9 @@ const App: React.FC = () => {
             <ul>
                 <li><a href="tutorial/clear.html">Hello world!</a></li>
                 <li><a href="tutorial/background.html">Scalable background</a></li>
-                <li><a href="tutorial/sprites-1.html">Sprites</a></li>
-                <li><a href="tutorial/sprites-2.html">Quads</a></li>
+                <li><a href="tutorial/sprites-1.html">Sprites 2D</a></li>
+                <li><a href="tutorial/sprites-2.html">Quads 2D</a></li>
+                <li><a href="tutorial/sprites-3.html">Sprites 3D</a></li>
                 <li><a href="tutorial/voronoi.html">Voronoi</a></li>
             </ul>
             <h1>Articles</h1>
@@ -17,7 +18,7 @@ const App: React.FC = () => {
                 <li><a href="article/voronoi.html">Voronoi</a></li>
             </ul>
     </div>
-    );
+    )
 }
 
 export default App;
