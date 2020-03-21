@@ -7,13 +7,13 @@ const FS = require("fs")
  * and the build process will generate `public/foobar.html`
  */
 const PAGES = [
-    'background',
+    'background',/*
     'tutorial/clear',
     'tutorial/sprites-1',
     'tutorial/sprites-2',
     'tutorial/sprites-3',
     'tutorial/voronoi',
-
+*/
     'article/voronoi',
 ]
 

@@ -1,0 +1,6 @@
+div.page-background-Clear {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}

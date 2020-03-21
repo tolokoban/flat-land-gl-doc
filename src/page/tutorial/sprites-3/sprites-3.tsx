@@ -28,8 +28,7 @@ async function init(canvas: HTMLCanvasElement) {
         atlas: atlases.sprites
     })
     const backgroundPainter = new FlatLand.Painter.Background({
-        atlas: atlases.background,
-        align: "B"
+        atlas: atlases.background
     })
 
     function newType(x: number, y: number, w: number, h: number) {
