@@ -1,6 +1,11 @@
-div.page-background-Image {
+div.page-background-Image > div.flex {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    align-items: center;    
+    align-items: flex-end;
+}
+
+div.page-background-Image > div.flex > div.canvas {
+    flex: 0 0 256px;
+    text-align: right;
 }

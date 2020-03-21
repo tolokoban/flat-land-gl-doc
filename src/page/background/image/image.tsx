@@ -7,18 +7,24 @@ import backgroundURL from "./background.jpg"
 
 import "./image.css"
 
-const Button = Tfw.View.Button
-const _ = Tfw.Intl.make(require("./image.yaml"))
+const Combo = Tfw.View.Combo
+const Slider = Tfw.View.Slider
 
 interface IImageProps {
     className?: string[]
 }
-interface IImageState {}
+interface IImageState {
+    alignX: number,
+    alignY: number,
+    scale: number,
+    type: string
+}
 
-class IBackground extends FlatLand.Painter.Background {}
+
+class IBackground extends FlatLand.Painter.Background { }
 
 export default class Image extends React.Component<IImageProps, IImageState> {
-    state = {}
+    state = { alignX: 0.5, alignY: 0.5, scale: 1, type: "square" }
     private refCanvas = React.createRef<HTMLCanvasElement>()
     private backgroundPainter?: IBackground
 
@@ -32,14 +38,15 @@ export default class Image extends React.Component<IImageProps, IImageState> {
             atlas,
             alignX: 0,
             alignY: 0,
-            scale: 1
+            scale: 0.5
         })
-        scene.use([ background ])
+        scene.use([background])
         scene.start()
         this.backgroundPainter = background
     }
 
     render() {
+        const { alignX, alignY, scale, type } = this.state
         const classes = [
             'page-background-Image',
             ...Tfw.Converter.StringArray(this.props.className, [])
@@ -50,23 +57,51 @@ const scene = new FlatLand.Scene(canvas)
 const atlas = scene.createAtlas({ image: url })
 const background = new FlatLand.Painter.Background({
     atlas,
-    alignX: 0,
-    alignY: 0,
-    scale: 1
+    alignX: ${alignX},
+    alignY: ${alignY},
+    scale: ${scale}
 })
 scene.use([ background ])
 scene.start()
 `
-        /*const { backgroundPainter } = this
+        const { backgroundPainter } = this
         if (backgroundPainter) {
-            backgroundPainter.align = align
-        }*/
+            backgroundPainter.alignX = alignX
+            backgroundPainter.alignY = alignY
+            backgroundPainter.scale = scale
+        }
+
 
         return (<div className={classes.join(' ')}>
-            <div>
-                <Code src={code} />
+            <div className="flex">
+                <Slider
+                    label="alignX" min={0} max={1}
+                    value={alignX} text={alignX.toFixed(2)}
+                    onChange={alignX => this.setState({ alignX })} />
+                <Slider
+                    label="alignY" min={0} max={1}
+                    value={alignY} text={alignY.toFixed(2)}
+                    onChange={alignY => this.setState({ alignY })} />
             </div>
-            <canvas ref={this.refCanvas} className="thm-ele-button" width="384" height="256"></canvas>
+            <div className="flex">
+                <Slider
+                    label="scale" min={0.5} max={3}
+                    value={scale} text={scale.toFixed(2)}
+                    onChange={scale => this.setState({ scale })} />
+                <Combo value={type} onChange={type => this.setState({ type })}>
+                    <div key="landscape">Landscape</div>
+                    <div key="portrait">Portrait</div>
+                    <div key="square">Square</div>
+                </Combo>
+            </div>
+            <div className="flex">
+                <Code src={code} />
+                <div className="canvas">
+                    <canvas ref={this.refCanvas} className="thm-ele-button"
+                        width={type === 'portrait' ? 120 : 200}
+                        height={type === 'landscape' ? 120 : 200}></canvas>
+                </div>
+            </div>
         </div>)
     }
 }
