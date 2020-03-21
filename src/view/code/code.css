@@ -5,6 +5,15 @@ div.view-Code {
     background: linear-gradient(to right,#fff,transparent);
 }
 
+div.view-Code span.hljs-function {
+    color: #08d;
+}
+
+div.view-Code span.hljs-params {
+    color: #07b;
+    font-weight: bold;
+}
+
 div.view-Code span.hljs-type {
     color: #080;
 }

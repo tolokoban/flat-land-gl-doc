@@ -8,7 +8,6 @@ import Table from '../../../view/table'
 import distSquaredFrag from './code/distSquared.frag'
 import lightFrag from './code/light.frag'
 import borderFrag from './code/border.frag'
-import Tfw from "tfw"
 import Article from '../../../view/article'
 
 const seeds4 = [
