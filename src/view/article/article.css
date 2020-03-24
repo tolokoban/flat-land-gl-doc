@@ -34,7 +34,7 @@ div.view-Template>header {
     justify-content: flex-start;
     align-items: center;
     z-index: 1;
-    box-shadow: 0 3px 6px rgba(0,0,0,.5);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .5);
     border-radius: 0 0 1rem 1rem;
 }
 
@@ -45,6 +45,11 @@ div.view-Template>header>* {
 div.view-Template>header>div {
     flex: 1 1 auto;
     text-align: center;
+    margin: 0 1rem;
+}
+
+div.view-Template>header>div.pages {
+    flex: 0 0 auto;
 }
 
 div.view-Template>div>article {
@@ -58,11 +63,23 @@ div.view-Template>div>article {
     border: 1px solid #0003;
 }
 
+div.view-Template>div>article>nav {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    margin: 1rem 0 0 0;
+}
+
+div.view-Template>div>article>nav>* {
+    flex: 0 0 auto;
+}
+
 div.view-Template>div>article>section {
     clear: both;
 }
 
-
 div.view-Template pre {
-  white-space: pre;
+    white-space: pre;
 }

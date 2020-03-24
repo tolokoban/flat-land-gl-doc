@@ -12,43 +12,97 @@ html, body {
 }
 
 .thm-ele-button {
-  box-shadow: 0 2px 4px rgba(0,0,0,.5);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .5);
 }
 
 .thm-ele-nav {
-  box-shadow: 0 4px 8px rgba(0,0,0,.5);
-  z-index: 9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .5);
+    z-index: 9;
 }
 
 .thm-bgP {
-  background: #28d;
-  color: #def;
+    background: #28d;
+    color: #def;
 }
 
 .thm-bgS {
-  background: #d72;
-  color: #fed;
+    background: #d72;
+    color: #fed;
 }
 
 .App {
-  text-align: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-image: url(./back.jpg);
+    overflow: auto;
 }
 
 .App-logo {
-  height: 40vmin;
+    height: 40vmin;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 .App-link {
-  color: #09d3ac;
+    color: #09d3ac;
+}
+
+.App button.box {
+    position: relative;
+    display: inline-block;
+    margin: 16px;
+    width: 300px;
+    height: 300px;
+    background-size: cover;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px #0004;
+    border: none;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all .4s;
+}
+
+.App button.box:hover {
+    box-shadow: 0 12px 24px #0006;
+    transform: translateY(-4px);
+}
+
+.App button.box>header {
+    background: linear-gradient(to bottom,#fff,#fff8 80%,transparent);
+    color: #321;
+    font-size: 110%;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 8px 16px;
+}
+
+.App button.box>footer {
+    background: linear-gradient(to top,#fff,#fff8 80%,transparent);
+    background: #fff7;
+    color: #321;
+    font-size: 80%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 8px 16px;
 }

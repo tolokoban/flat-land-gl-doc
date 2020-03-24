@@ -25,39 +25,30 @@ export default class Image extends React.Component<IImageProps, IImageState> {
     state = { alignX: 0.5, alignY: 0.5, scale: 1 }
     private refCanvas1 = React.createRef<HTMLCanvasElement>()
     private refCanvas2 = React.createRef<HTMLCanvasElement>()
-    private backgroundPainter1?: IBackground
-    private backgroundPainter2?: IBackground
+    private backgroundPainters: IBackground[] = []
 
-    componentDidMount() {
-        const canvas1 = this.refCanvas1.current
-        if (!canvas1) return
+    async componentDidMount() {
+        try {
+            const canvases = [this.refCanvas1.current, this.refCanvas2.current]
+            for (const canvas of canvases) {
+                if (!canvas) continue
 
-        const scene1 = new FlatLand.Scene(canvas1)
-        const atlas1 = scene1.createAtlas({ image: backgroundURL })
-        const background1 = new FlatLand.Painter.Background({
-            atlas: atlas1,
-            alignX: 0.5,
-            alignY: 0.5,
-            scale: 1
-        })
-        scene1.use([background1])
-        scene1.start()
-        this.backgroundPainter1 = background1
-
-        const canvas2 = this.refCanvas2.current
-        if (!canvas2) return
-
-        const scene2 = new FlatLand.Scene(canvas2)
-        const atlas2 = scene2.createAtlas({ image: backgroundURL })
-        const background2 = new FlatLand.Painter.Background({
-            atlas: atlas2,
-            alignX: 0.5,
-            alignY: 0.5,
-            scale: 1
-        })
-        scene2.use([background2])
-        scene2.start()
-        this.backgroundPainter2 = background2
+                const scene = new FlatLand.Scene(canvas)
+                const texture = await scene.createTextureFromImageAsync(backgroundURL)
+                const background = new FlatLand.Painter.Background({
+                    texture: texture,
+                    alignX: 0.5,
+                    alignY: 0.5,
+                    scale: 1                    
+                })
+                scene.use([background])
+                scene.start()
+                this.backgroundPainters.push(background)
+            }
+        } catch (ex) {
+            console.error("Unable to mount component!")
+            console.error(ex)
+        }
     }
 
     render() {
@@ -69,9 +60,9 @@ export default class Image extends React.Component<IImageProps, IImageState> {
         const code = `import url from "./background.jpg"
 
 const scene = new FlatLand.Scene(canvas)
-const atlas = scene.createAtlas({ image: url })
+const texture = await scene.createTextureFromImageAsync( url )
 const background = new FlatLand.Painter.Background({
-    atlas,
+    texture,
     alignX: ${alignX},
     alignY: ${alignY},
     scale: ${scale}
@@ -79,18 +70,11 @@ const background = new FlatLand.Painter.Background({
 scene.use([ background ])
 scene.start()
 `
-        const { backgroundPainter1 } = this
-        if (backgroundPainter1) {
-            backgroundPainter1.alignX = alignX
-            backgroundPainter1.alignY = alignY
-            backgroundPainter1.scale = scale
-        }
-
-        const { backgroundPainter2 } = this
-        if (backgroundPainter2) {
-            backgroundPainter2.alignX = alignX
-            backgroundPainter2.alignY = alignY
-            backgroundPainter2.scale = scale
+        for (const painter of this.backgroundPainters) {
+            if (!painter) continue
+            painter.alignX = alignX
+            painter.alignY = alignY
+            painter.scale = scale
         }
 
         return (<div className={classes.join(' ')}>

@@ -1,24 +1,28 @@
-import React from 'react';
-import './App.css';
+import React from 'react'
+import './App.css'
+import BackgroundLogo from './logo/background.jpg'
+import VoronoiLogo from './logo/voronoi.jpg'
 
 const App: React.FC = () => {
     return (
         <div className="App">
-            <h1>Tutorials</h1>
-            <ul>
-                <li><a href="tutorial/clear.html">Hello world!</a></li>
-                <li><a href="tutorial/background.html">Scalable background</a></li>
-                <li><a href="tutorial/sprites-1.html">Sprites 2D</a></li>
-                <li><a href="tutorial/sprites-2.html">Quads 2D</a></li>
-                <li><a href="tutorial/sprites-3.html">Sprites 3D</a></li>
-                <li><a href="tutorial/voronoi.html">Voronoi</a></li>
-            </ul>
-            <h1>Articles</h1>
-            <ul>
-                <li><a href="article/voronoi.html">Voronoi</a></li>
-            </ul>
+        <Box page="background" title="Background" image={BackgroundLogo}/>
+        <Box page="article/voronoi" title="Voronoi" image={VoronoiLogo}/>
     </div>
     )
+}
+
+function Box(props: { page: string, title: string, image?: string, description?: string }) {
+    const { page, title, image, description } = props
+    return <button className="box"
+            style={{backgroundImage: `url(${image})`}}
+            onClick={() => window.location.href = `${page}.html`}>
+        <header>{title}</header>
+        {
+            description &&
+            <footer>{description}</footer>
+        }
+    </button>
 }
 
 export default App;

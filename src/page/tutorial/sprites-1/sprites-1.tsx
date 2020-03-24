@@ -16,17 +16,17 @@ ReactDOM.render(
 
 async function init(canvas: HTMLCanvasElement) {
     const scene = new FlatLand.Scene(canvas)
-    const atlases = await scene.createAtlasesAsync({
-        background: { image: BackgroundAtlas },
-        sprites: { image: SpritesAtlas },
-    })
+    const atlases = {
+        background: await scene.createTextureFromImageAsync(BackgroundAtlas),
+        sprites: await scene.createTextureFromImageAsync(SpritesAtlas)
+    }
     const camera = new FlatLand.Camera.Cover2D({ size: 1024 })
     const spritesPainter = new FlatLand.Painter.Sprites({
         camera,
-        atlas: atlases.sprites
+        texture: atlases.sprites
     })
     const backgroundPainter = new FlatLand.Painter.Background({
-        atlas: atlases.background
+        texture: atlases.background
     })
 
     function newType(x: number, y: number, w: number, h: number) {
