@@ -34,7 +34,7 @@ export default class Image extends React.Component<IImageProps, IImageState> {
                 if (!canvas) continue
 
                 const scene = new FlatLand.Scene(canvas)
-                const texture = await scene.createTextureFromImageAsync(backgroundURL)
+                const texture = await scene.createImageTextureAsync(backgroundURL)
                 const background = new FlatLand.Painter.Background({
                     texture: texture,
                     alignX: 0.5,
@@ -60,7 +60,7 @@ export default class Image extends React.Component<IImageProps, IImageState> {
         const code = `import url from "./background.jpg"
 
 const scene = new FlatLand.Scene(canvas)
-const texture = await scene.createTextureFromImageAsync( url )
+const texture = await scene.createImageTextureAsync( url )
 const background = new FlatLand.Painter.Background({
     texture,
     alignX: ${alignX},

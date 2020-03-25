@@ -6,7 +6,7 @@ import "./article.css"
 Tfw.Theme.register("article", {
     bgP: "#28d",
     bgS: '#fa4',
-    bg0: "#aaa",
+    bg0: "#99a",
     bg3: "#fff"
 })
 Tfw.Theme.apply("article")
@@ -24,10 +24,23 @@ interface TTemplateState {
 export default class Template extends React.Component<TTemplateProps, TTemplateState> {
     state = { page: 0 }
 
+    componentDidMount() {
+        const children = Tfw.Converter.Array(this.props.children, [])
+        const hash = Number(window.location.hash.substr(1))
+        const page = clamp(hash, 0, children.length - 1)
+        if (page !== this.state.page) this.setState({ page })
+    }
+
+    private goto(page: number) {
+        window.location.hash = `#${page}`
+        this.setState({ page })
+    }
+
     render() {
         const classes = ['view-Template']
         const children = Tfw.Converter.Array(this.props.children, [])
-        const { page } = this.state
+        const hash = Number(window.location.hash.substr(1))
+        const page = clamp(hash, 0, children.length - 1)
 
         return (<div className={classes.join(' ')}>
             <div className="thm-bg0">
@@ -41,13 +54,13 @@ export default class Template extends React.Component<TTemplateProps, TTemplateS
                                 warning={true}
                                 icon="left"
                                 enabled={page > 0}
-                                onClick={() => this.setState({ page: page - 1 })} />
+                                onClick={() => this.goto(page - 1)} />
                             <Button
                                 small={true}
                                 warning={true}
                                 icon="right"
                                 enabled={page < children.length - 1}
-                                onClick={() => this.setState({ page: page + 1 })} />
+                                onClick={() => this.goto(page + 1)} />
                         </nav>
                     }
                 </article>
@@ -58,13 +71,22 @@ export default class Template extends React.Component<TTemplateProps, TTemplateS
                 <div className='pages'>Page: {
                     children.map((child, index) => (
                         <Button
+                            key={`page-${index}`}
                             label={`${index + 1}`}
                             small={true}
                             enabled={page !== index}
-                            onClick={() => this.setState({ page: index })} />
+                            onClick={() => window.location.hash = `#${index}`} />
                     ))
                 }</div>
             </header>
         </div>)
     }
+}
+
+
+function clamp(value: number, min: number, max: number): number {
+    if (isNaN(value)) return min
+    if (value < min) return min
+    if (value > max) return max
+    return value
 }

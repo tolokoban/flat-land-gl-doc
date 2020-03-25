@@ -17,8 +17,8 @@ ReactDOM.render(
 async function init(canvas: HTMLCanvasElement) {
     const scene = new FlatLand.Scene(canvas)
     const atlases = {
-        background: await scene.createTextureFromImageAsync(BackgroundAtlas),
-        sprites: await scene.createTextureFromImageAsync(SpriteAtlas)
+        background: await scene.createImageTextureAsync(BackgroundAtlas),
+        sprites: await scene.createImageTextureAsync(SpriteAtlas)
     }
     const camera = new FlatLand.Camera.Cover2D({ size: 1024 })
     const spritesPainter = new FlatLand.Painter.Sprites({

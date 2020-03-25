@@ -19,8 +19,8 @@ type IPlan = [number, number, number, number]
 async function init(canvas: HTMLCanvasElement) {
     const scene = new FlatLand.Scene(canvas)
     const atlases = {
-        background: await scene.createTextureFromImageAsync(BackgroundAtlas),
-        sprites: await scene.createTextureFromImageAsync(SpritesAtlas)
+        background: await scene.createImageTextureAsync(BackgroundAtlas),
+        sprites: await scene.createImageTextureAsync(SpritesAtlas)
     }
     const camera = new FlatLand.Camera.Perspective()
     const spritesPainter = new FlatLand.Painter.Sprites({
