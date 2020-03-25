@@ -1,0 +1,6 @@
+div.page-background-Cube > canvas {
+    width: 100%;
+    height: 400px;
+    max-width: 95vw;
+    max-height: 100vh;
+}
